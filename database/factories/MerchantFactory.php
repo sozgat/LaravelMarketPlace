@@ -26,7 +26,7 @@ class MerchantFactory extends Factory
             'mail' => $this->faker->email,
             'gsm' => $this->faker->phoneNumber,
             'tax_office' => $this->faker->city,
-            'tax_number' => $this->faker->randomDigit,
+            'tax_number' => $this->faker->randomNumber(NULL,false),
             'legal_company_title' => $this->faker->company,
             'address' => $this->faker->address,
             'website' => $this->faker->domainName,
