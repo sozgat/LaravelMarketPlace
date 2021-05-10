@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MerchantKey;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
        $this->call(MerchantSeeder::class);
+       $this->call(MerchantKeySeeder::class);
        $this->command->info("Database seeded.");
     }
 }

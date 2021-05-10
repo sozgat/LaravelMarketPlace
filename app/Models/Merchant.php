@@ -15,11 +15,15 @@ class Merchant extends Model
     protected $fillable = [
         'name', 'mail', 'gsm', 'tax_office', 'tax_number',
         'legal_company_title', 'address', 'website',
-        'iban', 'type', 'is_active',
+        'iban', 'type'
     ];
 
     protected $table = 'merchant';
     protected $primaryKey = 'id';
+
+    public function merchantKey(){
+        return $this->hasOne(MerchantKey::class);
+    }
 
 
 }
