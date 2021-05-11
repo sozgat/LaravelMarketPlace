@@ -31,12 +31,9 @@ class MerchantController extends Controller
 
             $merchantId = $merchant->id;
 
-            $merchantKey = MerchantKey::create([
-                'merchant_id' => $merchantId,
-                'merchant_api_key' => str_replace('-', '', Str::uuid()),
-                'merchant_secret_key' => str_replace('-', '', Str::uuid()),
-            ]);
+            $merchantKeyController = new MerchantKeyController();
 
+            $merchantKey = $merchantKeyController->createMerchantKey($merchantId);
 
             return response()->json([
                 'message' => "Merchant başarıyla oluşturuldu.",
