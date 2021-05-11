@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/onboarding/merchant', [MerchantController::class, 'createMerchant'] );
+Route::post('/onboarding/merchant', [MerchantController::class, 'createMerchantApi'] );
 
-Route::get('/get/submerchant/{id}', [MerchantController::class, 'getSubMerchant']);
+Route::post('/onboarding/submerchant', [MerchantController::class, 'createSubMerchant'] );
+
+Route::get('/get/submerchantsForMerchant/{id}', [MerchantController::class, 'getAllSubMerchantForMerchantById']);

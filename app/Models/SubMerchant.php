@@ -10,7 +10,7 @@ class SubMerchant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'top_merchant_id', 'sub_merchant_key', 'sub_merchant_external_id'
+        'top_merchant_id', 'sub_merchant_id','sub_merchant_key', 'sub_merchant_external_id'
     ];
 
     protected $table = 'submerchant';

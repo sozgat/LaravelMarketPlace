@@ -23,6 +23,7 @@ class SubMerchantFactory extends Factory
     {
         return [
             'top_merchant_id' => 1,
+            'sub_merchant_id' => 1,
             'sub_merchant_key' => $this->faker->sha256,
             'sub_merchant_external_id' => $this->faker->randomNumber(6),
         ];

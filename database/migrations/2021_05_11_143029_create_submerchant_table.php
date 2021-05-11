@@ -16,6 +16,7 @@ class CreateSubmerchantTable extends Migration
         Schema::create('submerchant', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('top_merchant_id')->unsigned();
+            $table->bigInteger('sub_merchant_id')->unsigned();
             $table->string("sub_merchant_key")->nullable(false);
             $table->string("sub_merchant_external_id")->nullable(false);
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));

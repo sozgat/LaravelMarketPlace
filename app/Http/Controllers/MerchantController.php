@@ -3,28 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merchant;
+use App\Models\MerchantKey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class MerchantController extends Controller
 {
-    public function createMerchant(Request $request){
+    public function createMerchantApi(Request $request){
 
         try {
 
-            $merchant = Merchant::create([
-                'name' => $request->name,
-                'mail' => $request->mail,
-                'gsm' => $request->gsm,
-                'tax_office' => $request->taxOffice,
-                'tax_number' => $request->taxNumber,
-                'legal_company_title' => $request->legalCompanyTitle,
-                'address' => $request->address,
-                'website' => $request->website,
-                'iban' => $request->iban,
-                'type' => $request->type,
-                'is_active' => "1",
-            ]);
+            $merchant = $this->createMerchant($request);
 
             $merchantId = $merchant->id;
 
@@ -49,11 +39,53 @@ class MerchantController extends Controller
 
     }
 
-    public function getSubMerchant($id,Request $request){
+    public function createSubMerchant(Request $request){
+
+        $topMerchantId = DB::table('merchant_key')
+            ->where('merchant_api_key', '=', $request->apiKey)
+            ->where('merchant_secret_key', '=', $request->secretKey)
+            ->value('merchant_id');
+
+
+        $subMerchant = $this->createMerchant($request);
+        $submerchantId = $subMerchant->id;
+
+        $subMerchantController = new SubMerchantController();
+        $subMerchant = $subMerchantController->createSubMerchant($topMerchantId, $submerchantId ,$request->subMerchantExternalId);
+
+        return response()->json([
+            'message' => "SubMerchant başarıyla oluşturuldu.",
+            "Merchant Keys" => [
+                'topMerchantId' => $subMerchant->top_merchant_id,
+                'subMerchantId' => $subMerchant->sub_merchant_id,
+                'subMerchantKey' => $subMerchant->sub_merchant_key,
+                'subMerchantExternalId' => $subMerchant->sub_merchant_external_id
+            ]
+        ]);
+    }
+
+    public function getAllSubMerchantForMerchantById($id,Request $request){
 
         $subMerchants = Merchant::find($id)->subMerchant;
 
         return $subMerchants;
 
+    }
+
+    public function createMerchant($data){
+
+        return $merchant = Merchant::create([
+            'name' => $data->name,
+            'mail' => $data->mail,
+            'gsm' => $data->gsm,
+            'tax_office' => $data->taxOffice,
+            'tax_number' => $data->taxNumber,
+            'legal_company_title' => $data->legalCompanyTitle,
+            'address' => $data->address,
+            'website' => $data->website,
+            'iban' => $data->iban,
+            'type' => $data->type,
+            'is_active' => "1",
+        ]);
     }
 }
