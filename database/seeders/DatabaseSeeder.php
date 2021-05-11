@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
        $this->call(MerchantSeeder::class);
        $this->call(MerchantKeySeeder::class);
+       $this->call(SubMerchantSeeder::class);
        $this->command->info("Database seeded.");
     }
 }

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merchant;
-use App\Models\MerchantKey;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+
 
 class MerchantController extends Controller
 {
@@ -50,6 +47,13 @@ class MerchantController extends Controller
                 'error' => $e->getMessage()],400);
         }
 
+    }
+
+    public function getSubMerchant($id,Request $request){
+
+        $subMerchants = Merchant::find($id)->subMerchant;
+
+        return $subMerchants;
 
     }
 }

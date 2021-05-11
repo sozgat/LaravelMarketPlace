@@ -25,5 +25,9 @@ class Merchant extends Model
         return $this->hasOne(MerchantKey::class);
     }
 
+    public function subMerchant(){
+        return $this->hasMany(SubMerchant::class, 'top_merchant_id');
+    }
+
 
 }

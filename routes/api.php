@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/onboarding/merchant', [MerchantController::class, 'createMerchant'] );
+
+Route::get('/get/submerchant/{id}', [MerchantController::class, 'getSubMerchant']);

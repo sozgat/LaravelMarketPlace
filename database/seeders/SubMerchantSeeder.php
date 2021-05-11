@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Merchant;
+use App\Models\SubMerchant;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class MerchantSeeder extends Seeder
+class SubMerchantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,6 @@ class MerchantSeeder extends Seeder
      */
     public function run()
     {
-       Merchant::factory()->count(2)->create();
+        SubMerchant::factory()->count(5)->create();
     }
-
 }
