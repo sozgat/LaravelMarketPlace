@@ -22,6 +22,7 @@ class CreateSubmerchantTable extends Migration
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign("top_merchant_id")->references('id')->on('merchant');
+            $table->foreign("sub_merchant_id")->references('id')->on('merchant');
         });
     }
 

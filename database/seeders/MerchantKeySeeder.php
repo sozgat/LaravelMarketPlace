@@ -14,6 +14,6 @@ class MerchantKeySeeder extends Seeder
      */
     public function run()
     {
-        MerchantKey::factory()->count(5)->create();
+        MerchantKey::factory()->count(1)->create();
     }
 }

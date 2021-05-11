@@ -14,6 +14,6 @@ class SubMerchantSeeder extends Seeder
      */
     public function run()
     {
-        SubMerchant::factory()->count(5)->create();
+        SubMerchant::factory()->count(2)->create();
     }
 }

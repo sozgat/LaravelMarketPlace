@@ -46,6 +46,11 @@ class MerchantController extends Controller
             ->where('merchant_secret_key', '=', $request->secretKey)
             ->value('merchant_id');
 
+        if ($topMerchantId === null){
+            return response()->json([
+                'message' => 'apikey veya secretKey geçersiz.'],400);
+        }
+
 
         $subMerchant = $this->createMerchant($request);
         $submerchantId = $subMerchant->id;
