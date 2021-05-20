@@ -41,10 +41,7 @@ class MerchantController extends Controller
 
     public function createSubMerchant(Request $request){
 
-        $topMerchantId = DB::table('merchant_key')
-            ->where('merchant_api_key', '=', $request->apiKey)
-            ->where('merchant_secret_key', '=', $request->secretKey)
-            ->value('merchant_id');
+        $topMerchantId = self::getMerchantIdByApiSecretKey($request->apiKey,$request->secretKey);
 
         if ($topMerchantId === null){
             return response()->json([
@@ -92,5 +89,13 @@ class MerchantController extends Controller
             'type' => $data->type,
             'is_active' => "1",
         ]);
+    }
+
+    public static function getMerchantIdByApiSecretKey($apiKey, $secretKey){
+
+        return $merchantId = DB::table('merchant_key')
+            ->where('merchant_api_key', '=', $apiKey)
+            ->where('merchant_secret_key', '=', $secretKey)
+            ->value('merchant_id');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubMerchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class SubMerchantController extends Controller
@@ -18,5 +19,12 @@ class SubMerchantController extends Controller
         ]);
 
         return $subMerchant;
+    }
+
+    public static function getSubMerchantIdBySubMerchantKey($subMerchantKey){
+
+        return $subMerchantId = DB::table('submerchant')
+            ->where('sub_merchant_key', '=', $subMerchantKey)
+            ->value('sub_merchant_id');
     }
 }
