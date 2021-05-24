@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SettlementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,5 @@ Route::post('/onboarding/submerchant', [MerchantController::class, 'createSubMer
 Route::get('/get/submerchantsForMerchant/{id}', [MerchantController::class, 'getAllSubMerchantForMerchantById']);
 
 Route::post('/payment/auth', [PaymentController::class, 'createPaymentApi']);
+
+Route::post('/payment/settlement', [SettlementController::class, 'createSettlement']);

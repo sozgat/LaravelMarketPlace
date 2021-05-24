@@ -16,10 +16,12 @@ class CreateSettlementTable extends Migration
         Schema::create('settlement', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('settlement_merchant_id')->unsigned();
+            $table->bigInteger('settlement_payment_id')->unsigned();
             $table->float("settlement_total_price")->nullable(false);
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign("settlement_merchant_id")->references('id')->on('merchant');
+            $table->foreign('settlement_payment_id')->references('id')->on('payment');
         });
     }
 

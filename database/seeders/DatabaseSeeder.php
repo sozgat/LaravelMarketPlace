@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
        $this->call(SubMerchantSeeder::class);
        $this->call(PaymentSeeder::class);
        $this->call(SubMerchantSeeder::class);
+       $this->call(PaymentSeeder::class);
        $this->command->info("Database seeded.");
     }
 }

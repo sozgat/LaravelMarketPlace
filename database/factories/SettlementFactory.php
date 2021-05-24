@@ -23,6 +23,7 @@ class SettlementFactory extends Factory
     {
         return [
             'settlement_merchant_id' => 4,
+            'settlement_payment_id' => 1,
             'settlement_total_price' => 5.20,
         ];
     }

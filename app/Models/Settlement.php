@@ -10,7 +10,7 @@ class Settlement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'settlement_merchant_id','settlement_total_price',
+        'settlement_merchant_id','settlement_payment_id','settlement_total_price',
     ];
 
     protected $table = 'settlement';
