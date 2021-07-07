@@ -1,9 +1,11 @@
 <?php
 
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettlementController;
+use App\Http\Middleware\CheckStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +33,9 @@ Route::get('/get/submerchantsForMerchant/{id}', [MerchantController::class, 'get
 Route::post('/payment/auth', [PaymentController::class, 'createPaymentApi']);
 
 Route::post('/payment/settlement', [SettlementController::class, 'createSettlement']);
+
+Route::middleware([CheckStatus::class])->group(function() {
+
+    Route::post('home', [HomeController::class, 'home']);
+
+});
